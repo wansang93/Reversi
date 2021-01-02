@@ -1,10 +1,12 @@
+# How to build
+
 ### Part 01 Design
 
 1. Design App
 
    - Download an application for moving pictures quickly on a mobile phone -> [marvelapp.com/pop](marvelapp.com/pop)
 
-### Part 02 Create the static file webserver
+### Part 02 Create `the static file webserver`
 
 1. Download `Node.js`
    
@@ -100,57 +102,23 @@
    touch index.html
    ```
 
-   go to bootstrap then copy Starter template -> [link](https://getbootstrap.com/docs/5.0/getting-started/introduction/#starter-template)
-   
-   ```html
-   <!doctype html>
-   <html lang="en">
-   <head>
-      <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-
-      <!-- Bootstrap CSS -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
-      <title>Hello, world!</title>
-   </head>
-   <body>
-      <h1>Hello, world!</h1>
-
-      <!-- Optional JavaScript; choose one of the two! -->
-
-      <!-- Option 1: Bootstrap Bundle with Popper -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-
-      <!-- Option 2: Separate Popper and Bootstrap JS -->
-      <!--
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
-      -->
-   </body>
-   </html>
-   ```
+   go to bootstrap then copy Starter template -> [link](https://getbootstrap.com/docs/4.0/getting-started/introduction/#starter-template)
 
 8. Push to GitHub -m `Create the static file webserver`
 
-### Part 03 Implement index.html, about.html, wiki links and phototype name.html
+### Part 03 Implement `index.html`, `about.html`, wiki links and prototype `name.html`
 
 1. Modify `index.html`
-   
-   in `<head>` tag
+
    ```html
-    <title>Reversi</title>
+    <title>Reversi Home</title>
 
     <style>
       body {
         background-image: url("assets/images/green.png");
       }
     </style>
-   ```
 
-   in `<body>` tag
-   ```html
     <div class="container-fluid text-center">
       <div class="row">
         <div class="col">
@@ -187,36 +155,135 @@
 
    `about.html`
    ```html
-       <title>About</title>
+   <!doctype html>
+   <html lang="en">
 
-    <style>
+   <head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+   <title>About</title>
+
+   <style>
       #header-row {
-        background-image: url("assets/images/green.png");
+         background-image: url("assets/images/green.png");
       }
-    </style>
+   </style>
 
-  </head>
-  <body>
-    <div class="container-fluid text-center">
-      <div class="row", id="header-row">
-        <div class="col">
-          <h2>About</h2>
-        </div>
+   </head>
+
+   <body>
+   <div class="container-fluid text-center">
+      <div class="row" , id="header-row">
+         <div class="col">
+         <h2>About</h2>
+         </div>
       </div>
       <div class="row">
-        <div class="col">
-          <p>Lorum ipsum</p>
-        </div>
+         <div class="col">
+         <p>Lorum ipsum</p>
+         </div>
       </div>
       <div class="row">
-        <div class="col">
-          <a href="index.html" class="btn btn-lg btn-secondary">Home</a>
-        </div>
-        <div class="col">
-          <a href="https://namu.wiki/w/%EC%98%A4%EB%8D%B8%EB%A1%9C" class="btn btn-lg btn-info">Rules</a>
-        </div>
+         <div class="col">
+         <a href="index.html" class="btn btn-lg btn-secondary">Home</a>
+         </div>
+         <div class="col">
+         <a href="https://namu.wiki/w/%EC%98%A4%EB%8D%B8%EB%A1%9C" class="btn btn-lg btn-info">Rules</a>
+         </div>
       </div>
-    </div>
+   </div>
+
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"></script>
+
+   </body>
+
+   </html>
    ```
 
-### Part 04 
+### Part 04 Chat Overview
+
+### Part 05 Update `name.html`
+
+```html
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Enter your user name for Reversi</title>
+
+  <style>
+    #header-row {
+      background-image: url("assets/images/green.png");
+    }
+  </style>
+
+  <script>
+    function submitForm() {
+      var username = $('#username').val();
+      window.location.href = 'lobby.html?username=' + username;
+    }
+  </script>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <div class="container-fluid text-center">
+    <div class="row" id="header-row">
+      <div class="col">
+        <h2>Enter Your User Name</h2>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col'>
+        <form onsubmit='submitForm(); return false;' class='form-inline'>
+          <div class='form-group'>
+            <label for='Enter your username' class='col-form-label sr-only'>Enter your username</label>
+            <input class='form-control' type='text' value='' id='username' placeholder="Enter your user name" />
+          </div>
+          <button type='submit' class='btn btn-primary'>Done</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+```
+
+### Part 06 
+

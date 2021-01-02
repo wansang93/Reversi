@@ -6,43 +6,32 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-  <title>Reversi Home</title>
+  <title>Reversi Game Lobby</title>
 
   <style>
-    body {
+    #header-row {
       background-image: url("assets/images/green.png");
     }
   </style>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
 </head>
 
 <body>
   <div class="container-fluid text-center">
-    <div class="row">
+    <div class="row" id="header-row">
       <div class="col">
-        <img class="img-fluid" src="assets/images/top-splash.jpg" alt="Rersi logo" />
+        <h2>Lobby</h2>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <a href="name.html" class="btn btn-lg btn-secondary">Let's play</a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <img class="img-fluid" src="assets/images/bottom-splash.jpg" alt="Rersi logo 2" />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <a href="about.html" class="btn btn-lg btn-secondary">About</a>
-      </div>
-      <div class="col">
-        <a href="https://namu.wiki/w/%EC%98%A4%EB%8D%B8%EB%A1%9C" class="btn btn-lg btn-info">Rules</a>
+    <div class='row'>
+      <div class='col'>
+        <h3>Messages</h3>
+        <div id='messages'>
+        </div>
       </div>
     </div>
   </div>
@@ -58,6 +47,10 @@
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"
+    integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ=="
+    crossorigin="anonymous"></script>
+  <script src='js/main.js'></script>
 </body>
 
 </html>
