@@ -45,7 +45,7 @@
        license: (ISC) GPL-3.0
        (yes)
    ls  # package.join
-   npm install socket.io --save  # record that I need
+   npm install socket.io@2.0.1 --save  # (--save) records that I need
    npm install node-static --save
    # found 4 vulnerabilities (3 low, 1 high)
    # run `npm audit fix` to fix them, or `npm audit` for details
