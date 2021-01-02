@@ -44,7 +44,7 @@
        author: wansang kim
        license: (ISC) GPL-3.0
        (yes)
-   ls  # package.join
+   ls  # package.json
    npm install socket.io@2.0.1 --save  # (--save) records that I need
    npm install node-static --save
    # found 4 vulnerabilities (3 low, 1 high)
@@ -260,7 +260,7 @@
       <div class='col'>
         <form onsubmit='submitForm(); return false;' class='form-inline'>
           <div class='form-group'>
-            <label for='Enter your username' class='col-form-label sr-only'>Enter your username</label>
+            <label for='username' class='col-form-label sr-only'>Enter your user name</label>
             <input class='form-control' type='text' value='' id='username' placeholder="Enter your user name" />
           </div>
           <button type='submit' class='btn btn-primary'>Done</button>
@@ -287,3 +287,99 @@
 
 ### Part 06 
 
+```bash
+cp name.html lobby.html
+mkdir js
+cd js/
+touch main.js
+```
+
+`lobby.html`
+```html
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Reversi Game Lobby</title>
+
+  <style>
+    #header-row {
+      background-image: url("assets/images/green.png");
+    }
+  </style>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <div class="container-fluid text-center">
+    <div class="row" id="header-row">
+      <div class="col">
+        <h2>Lobby</h2>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col'>
+        <h3>Messages</h3>
+        <div id='messages'>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <script src='js/main.js'></script>
+</body>
+
+</html>
+```
+
+`js/main.js`
+
+```javascript
+/* functions for general use */
+
+/* This function returns the value associated with 'whichParam' on the URL */
+function getURLParameters(whichParam) {
+    var pageURL = window.location.search.substring(1);
+    var pageURLVariables = pageURL.split('&');
+    for (var i = 0; i < pageURLVariables.length; i++) {
+        var parameterName = pageURLVariables[i].split('=');
+        if (parameterName[0] == whichParam) {
+            return parameterName[1];
+        }
+    }
+}
+
+var username = getURLParameters('username');
+if ('undefined' == typeof username || !username) {
+    username = 'Anonymous_' + Math.random();
+}
+
+$('#messages').append('<h4>' + username + '</h4>');
+```
+
+### Part 07
+
+Copy Script Tag at link -> [https://cdnjs.com/libraries/socket.io/2.3.0](https://cdnjs.com/libraries/socket.io/2.3.0)  
+-> Paste on `lobby.html`
+
+```bash
+
+```

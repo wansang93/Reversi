@@ -22,7 +22,7 @@
   "homepage": "https://github.com/wansang93/Reversi#readme",
   "dependencies": {
     "node-static": "^0.7.11",
-    "socket.io": "^2.0.1"
+    "socket.io": "^2.3.0"
   },
   "directories": {
     "doc": "docs"
