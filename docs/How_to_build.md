@@ -377,8 +377,10 @@ $('#messages').append('<h4>' + username + '</h4>');
 
 ### Part 07
 
+server socket <-> client socket have to comunicate
+
 Copy Script Tag at link -> [https://cdnjs.com/libraries/socket.io/2.3.0](https://cdnjs.com/libraries/socket.io/2.3.0)  
--> Paste on `lobby.html`
+-> Paste on `lobby.html` for client
 
 ```bash
 
