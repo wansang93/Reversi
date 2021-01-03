@@ -77,19 +77,11 @@ socket.on('join_room_response', function (payload) {
     }
 
     /* Manage the message that a new player has joined */
-    var newHTML = '<p>' + payload.username + ' just entered the lobby</p>';
+    var newHTML = '<p><b>' + payload.username + '</b> just entered the lobby</p>';
     var newNode = $(newHTML);
     newNode.hide();
     $('#messages').append(newNode);
     newNode.slideDown(1000);
-});
-
-socket.on('send_message_response', function (payload) {
-    if (payload.result == 'fail') {
-        alert(payload.message);
-        return;
-    }
-    $('#messages').append('<p><b>' + payload.username + ' says:</b> ' + payload.message + '</p>');
 });
 
 /* what to do when the server says that someone has left a room */
@@ -110,7 +102,7 @@ socket.on('player_disconnected', function (payload) {
     }
 
     /* Manage the message that a player has left */
-    var newHTML = '<p>' + payload.username + ' hs left the lobby</p>';
+    var newHTML = '<p><b>' + payload.username + '</b> has left the lobby</p>';
     var newNode = $(newHTML);
     newNode.hide();
     $('#messages').append(newNode);
@@ -122,7 +114,7 @@ socket.on('send_message_response', function (payload) {
         alert(payload.message);
         return;
     }
-    $('#messages').append('<p><b>' + payload.username + ' says:</b> ' + payload.message + '</p>');
+    $('#messages').append('<p><b>' + payload.username + ' </b>: ' + payload.message + '</p>');
 });
 
 function send_message() {
