@@ -18,3 +18,5 @@ Want to build like this site -> [https://dournac.org/info/othello#optimization](
 ## HOW TO BUILD
 
 [Link](./docs/How_to_build.md)
+
+배경 이미지 투명하게 하기 링크 -> [https://www.remove.bg/upload](https://www.remove.bg/upload)

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 
 <head>
   <!-- Required meta tags -->
@@ -28,32 +28,31 @@
       </div>
     </div>
 
-    <div class='row align-items-end' id='players'>
-      <div class='col-9 text-left'>
+    <div class="row align-items-end" id="players">
+      <div class="col-9 text-left">
         <h3>Players</h3>
       </div>
-      <div class='col-3'>
+      <div class="col-3">
       </div>
       <!-- This is where the new people in the lobby are going to go-->
     </div>
 
-    <div class='row'>
-      <div class='col text-left'>
+    <div class="row">
+      <div class="col text-left">
         <h3>Messages</h3>
-        <div id='messages'>
-        </div>
+        <form class="form-inline" onsubmit="send_message(); return false;">
+          <label for="send_message_holder" class="col-form-label sr-only">Enter your chat message</label>
+          <input class="form-control mx-auto w-75" type="text" value="" id="send_message_holder"
+            placeholder="Enter your chat message" />
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
       </div>
     </div>
-    <div class='row'>
-      <div class='col'>
-        <form onsubmit='send_message(); return false;'>
-          <div class='form-group'>
-            <label for='send_message_holder' class='col-form-label sr-only'>Enter your chat message</label>
-            <input class='form-control' type='text' value='' id='send_message_holder'
-              placeholder='Enter your chat message' />
-          </div>
-          <button type='submit' class='btn btn-primary'>Send</button>
-        </form>
+
+    <div class="row">
+      <div class="col text-left">
+        <div id="messages">
+        </div>
       </div>
     </div>
   </div>
@@ -71,7 +70,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"
     integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA=="
     crossorigin="anonymous"></script>
-  <script src='js/main.js'></script>
+  <script src="js/main.js"></script>
 </body>
 
 </html>
