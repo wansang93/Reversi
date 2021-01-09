@@ -253,3 +253,77 @@ $(function () {
     console.log('*** Client Log Message: \'join_room\' payload: ' + JSON.stringify(payload));
     socket.emit('join_room', payload);
 });
+
+var old_board = [
+    ['?', '?', '?', '?', '?', '?', '?', '?'],
+    ['?', '?', '?', '?', '?', '?', '?', '?'],
+    ['?', '?', '?', '?', '?', '?', '?', '?'],
+    ['?', '?', '?', '?', '?', '?', '?', '?'],
+    ['?', '?', '?', '?', '?', '?', '?', '?'],
+    ['?', '?', '?', '?', '?', '?', '?', '?'],
+    ['?', '?', '?', '?', '?', '?', '?', '?'],
+    ['?', '?', '?', '?', '?', '?', '?', '?']
+];
+
+socket.on('game_update', function (payload) {
+    console.log('*** Client Log Message: \'game_update\' \n\t payload: ' + JSON.stringify(payload));
+
+    /* Check for a good board update */
+    if (payload.result == 'fail') {
+        console.log(payload.message);
+        window.location.href = 'lobby.html?username=' + username;
+        alert(payload.message);
+        return;
+    }
+
+    /* Check for a good board in the payload */
+    var board = payload.game.board;
+    if ('undefined' == typeof board || !board) {
+        console.log('Internal error: received a malformed board update from the server');
+        return;
+    }
+    /* Update my color */
+
+    /* Animate changes to the board */
+
+    var row, column;
+    for (row = 0; row < 8; row++) {
+        for (column = 0; column < 8; column++) {
+            /* If a board space has changed */
+            if (old_board[row][column] != board[row][column]) {
+                if (old_board[row][column] == '?' && board[row][column] == ' ') {
+                    $('#' + row + '_' + column).html('<img src="assets/images/empty.png" alt="empty square"/>');
+                }
+                else if (old_board[row][column] == '?' && board[row][column] == 'w') {
+                    $('#' + row + '_' + column).html('<img src="assets/images/empty_to_white.png" alt="white square"/>');
+                }
+                else if (old_board[row][column] == '?' && board[row][column] == 'b') {
+                    $('#' + row + '_' + column).html('<img src="assets/images/empty_to_black.png" alt="black square"/>');
+                }
+                else if (old_board[row][column] == ' ' && board[row][column] == 'w') {
+                    $('#' + row + '_' + column).html('<img src="assets/images/empty_to_white.png" alt="white square"/>');
+                }
+                else if (old_board[row][column] == ' ' && board[row][column] == 'b') {
+                    $('#' + row + '_' + column).html('<img src="assets/images/white_to_empty.png" alt="empty square"/>');
+                }
+                else if (old_board[row][column] == 'w' && board[row][column] == ' ') {
+                    $('#' + row + '_' + column).html('<img src="assets/images/black_to_empty.png" alt="empty square"/>');
+                }
+                else if (old_board[row][column] == 'b' && board[row][column] == ' ') {
+                    $('#' + row + '_' + column).html('<img src="assets/images/white_to_black.png" alt="black square"/>');
+                }
+                else if (old_board[row][column] == 'w' && board[row][column] == 'b') {
+                    $('#' + row + '_' + column).html('<img src="assets/images/black_to_white.png" alt="white square"/>');
+                }
+                else if (old_board[row][column] == 'b' && board[row][column] == 'w') {
+                    $('#' + row + '_' + column).html('<img src="assets/images/empty_to_black.png" alt="black square"/>');
+                }
+                else{
+                    $('#' + row + '_' + column).html('<img src="assets/images/error.png" alt="error"/>');
+                }
+            }
+        }
+    }
+
+    old_board = board;
+});
