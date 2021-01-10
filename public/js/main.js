@@ -265,6 +265,8 @@ var old_board = [
     ['?', '?', '?', '?', '?', '?', '?', '?']
 ];
 
+var my_color = ' ';
+
 socket.on('game_update', function (payload) {
     console.log('*** Client Log Message: \'game_update\' \n\t payload: ' + JSON.stringify(payload));
 
@@ -283,6 +285,19 @@ socket.on('game_update', function (payload) {
         return;
     }
     /* Update my color */
+    if (socket.id == payload.game.player_white.socket) {
+        my_color = 'white';
+    }
+    else if (socket.id == payload.game.player_black.socket) {
+        my_color = 'black';
+    }
+    else {
+        /* Something weird is going on, like three people playing at once */
+        /* send client back to the lobby */
+        window.location.href = 'lobby.html?username=' + username;
+        return;
+    }
+    $('#my_color').html('<h3 id="my_color"> I am ' + my_color + '</h3>');
 
     /* Animate changes to the board */
 
@@ -304,7 +319,7 @@ socket.on('game_update', function (payload) {
                     $('#' + row + '_' + column).html('<img src="assets/images/empty_to_white.png" alt="white square"/>');
                 }
                 else if (old_board[row][column] == ' ' && board[row][column] == 'b') {
-                    $('#' + row + '_' + column).html('<img src="assets/images/white_to_empty.png" alt="empty square"/>');
+                    $('#' + row + '_' + column).html('<img src="assets/images/empty_to_black.png" alt="black square"/>');
                 }
                 else if (old_board[row][column] == 'w' && board[row][column] == ' ') {
                     $('#' + row + '_' + column).html('<img src="assets/images/black_to_empty.png" alt="empty square"/>');
@@ -318,12 +333,40 @@ socket.on('game_update', function (payload) {
                 else if (old_board[row][column] == 'b' && board[row][column] == 'w') {
                     $('#' + row + '_' + column).html('<img src="assets/images/empty_to_black.png" alt="black square"/>');
                 }
-                else{
+                else {
                     $('#' + row + '_' + column).html('<img src="assets/images/error.png" alt="error"/>');
+                }
+
+                /* Set up interactivity */
+                $('#' + row + '_' + column).off('click');
+                if (board[row][column] == ' ') {
+                    $('#' + row + '_' + column).addClass('hovered_over');
+                    $('#' + row + '_' + column).click(function (r, c) {
+                        return function () {
+                            var payload = {};
+                            payload.row = r;
+                            payload.column = c;
+                            payload.color = my_color;
+                            console.log('*** Client Log Message: \' play_token \' payload: ' + JSON.stringify(payload));
+                            socket.emit('play_token', payload);
+                        };
+                    }(row, column));
+                }
+                else {
+                    $('#' + row + '_' + column).removeClass('hovered_over');
                 }
             }
         }
     }
-
     old_board = board;
+});
+
+socket.on('play_token_response', function (payload) {
+    console.log('*** Client Log Message: \'play_token_response\' \n\t payload: ' + JSON.stringify(payload));
+
+    /* Check for a good play_token_response */
+    if (payload.result == 'fail') {
+        console.log(payload.message);
+        return;
+    }
 });
