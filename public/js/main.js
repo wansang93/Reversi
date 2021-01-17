@@ -336,16 +336,16 @@ socket.on('game_update', function (payload) {
                     $('#' + row + '_' + column).html('<img src="assets/images/empty_to_black.png" alt="black square"/>');
                 }
                 else if (old_board[row][column] == 'w' && board[row][column] == ' ') {
-                    $('#' + row + '_' + column).html('<img src="assets/images/black_to_empty.png" alt="empty square"/>');
+                    $('#' + row + '_' + column).html('<img src="assets/images/white_to_empty.png" alt="empty square"/>');
                 }
                 else if (old_board[row][column] == 'b' && board[row][column] == ' ') {
-                    $('#' + row + '_' + column).html('<img src="assets/images/white_to_black.png" alt="black square"/>');
+                    $('#' + row + '_' + column).html('<img src="assets/images/black_to_empty.png" alt="empty square"/>');
                 }
                 else if (old_board[row][column] == 'w' && board[row][column] == 'b') {
-                    $('#' + row + '_' + column).html('<img src="assets/images/black_to_white.png" alt="white square"/>');
+                    $('#' + row + '_' + column).html('<img src="assets/images/white_to_black.png" alt="black square"/>');
                 }
                 else if (old_board[row][column] == 'b' && board[row][column] == 'w') {
-                    $('#' + row + '_' + column).html('<img src="assets/images/empty_to_black.png" alt="black square"/>');
+                    $('#' + row + '_' + column).html('<img src="assets/images/black_to_white.png" alt="white square"/>');
                 }
                 else {
                     $('#' + row + '_' + column).html('<img src="assets/images/error.png" alt="error"/>');

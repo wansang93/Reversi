@@ -680,11 +680,13 @@ io.sockets.on('connection', function (socket) {
         /* Execute the move */
         if (color == 'white') {
             game.board[row][column] = 'w';
+            filp_board('w', row, column, game.board);
             game.whose_turn = 'black';
             game.legal_moves = calculate_valid_moves('b', game.board);
         }
         else if (color == 'black') {
             game.board[row][column] = 'b';
+            filp_board('b', row, column, game.board);
             game.whose_turn = 'white';
             game.legal_moves = calculate_valid_moves('w', game.board);
         }
@@ -817,6 +819,42 @@ function calculate_valid_moves(who, board) {
     return valid;
 }
 
+function flip_line(who, dr, dc, r, c, board) {
+    if ((r + dr < 0) || (r + dr > 7)) {
+        return false;
+    }
+    if ((c + dc < 0) || (c + dc > 7)) {
+        return false;
+    }
+    if (board[r + dr][c + dc] === ' ') {
+        return false;
+    }
+    if (board[r + dr][c + dc] === who) {
+        return true;
+    }
+    else {
+        if (flip_line(who, dr, dc, r + dr, c + dc, board)) {
+            board[r + dr][c + dc] = who;
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+function filp_board(who, row, column, board) {
+    flip_line(who, -1, -1, row, column, board);
+    flip_line(who, -1, 0, row, column, board);
+    flip_line(who, -1, 1, row, column, board);
+
+    flip_line(who, 0, -1, row, column, board);
+    flip_line(who, 0, 1, row, column, board);
+
+    flip_line(who, 1, -1, row, column, board);
+    flip_line(who, 1, 0, row, column, board);
+    flip_line(who, 1, 1, row, column, board);
+}
+
 function send_game_update(socket, game_id, message) {
     /* Check to see if a game with game_id already exists */
     if (('undefined' === typeof games[game_id]) || !games[game_id]) {
@@ -891,20 +929,35 @@ function send_game_update(socket, game_id, message) {
 
     var row, column;
     var count = 0;
+    var black = 0;
+    var white = 0;
     for (row = 0; row < 8; row++) {
         for (column = 0; column < 8; column++) {
-            if (games[game_id].board[row][column] != ' ') {
+            if (games[game_id].legal_moves[row][column] != ' ') {
                 count++;
+            }
+            if (games[game_id].board[row][column] != 'b') {
+                black++;
+            }
+            if (games[game_id].board[row][column] != 'w') {
+                white++;
             }
         }
     }
 
-    if (count == 64) {
+    if (count == 0) {
         /* Send a game over message */
+        var winner = 'tie game';
+        if (black > white){
+            winner = 'black';
+        }
+        if (black < white){
+            winner = 'white';
+        }
         var success_data = {
             result: 'success',
             game: games[game_id],
-            who_won: 'everyone',
+            who_won: 'winner',
             game_id: game_id
         };
         io.in(game_id).emit('game_over', success_data);
