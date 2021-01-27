@@ -12,6 +12,16 @@
     #header-row {
       background-image: url("assets/images/green.png");
     }
+
+    #send_message_holder {
+      margin: 10px 10px
+    }
+
+    @media (max-width: 640px) {
+      #change-img {
+        width: 100%
+      }
+    }
   </style>
 
   <!-- Bootstrap CSS -->
@@ -27,31 +37,34 @@
         <h2>Lobby</h2>
       </div>
     </div>
+    <div id="center">
+      <img id="change-img" src="assets/images/Reversi.png">
 
-    <div class="row align-items-end" id="players">
-      <div class="col-9 text-left">
-        <h3>Players</h3>
+      <div class="row align-items-end" id="players">
+        <div class="col-9 text-left">
+          <h3>Players</h3>
+        </div>
+        <div class="col-3">
+        </div>
+        <!-- This is where the new people in the lobby are going to go-->
       </div>
-      <div class="col-3">
-      </div>
-      <!-- This is where the new people in the lobby are going to go-->
-    </div>
 
-    <div class="row">
-      <div class="col text-left">
-        <h3>Messages</h3>
-        <form class="form-inline" onsubmit="send_message(); return false;">
-          <label for="send_message_holder" class="col-form-label sr-only">Enter your chat message</label>
-          <input class="form-control mx-auto w-75" type="text" value="" id="send_message_holder"
-            placeholder="Enter your chat message" />
-          <button type="submit" class="btn btn-primary">Send</button>
-        </form>
+      <div class="row">
+        <div class="col text-left">
+          <h3>Messages</h3>
+          <form class="form-inline" onsubmit="send_message(); return false;">
+            <label for="send_message_holder" class="col-form-label sr-only">Enter your chat message</label>
+            <input class="form-control w-75" type="text" value="" id="send_message_holder"
+              placeholder="Enter your chat message" />
+            <button type="submit" class="btn btn-primary">Send</button>
+          </form>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col text-left">
-        <div id="messages">
+      <div class="row">
+        <div class="col text-left">
+          <div id="messages">
+          </div>
         </div>
       </div>
     </div>

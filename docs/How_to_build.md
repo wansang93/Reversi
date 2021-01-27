@@ -640,3 +640,4 @@ socket.on('send_message', function (payload) {
 
 copy minified(jquery-3.5.1.min.js) at the link -> [https://code.jquery.com/](https://code.jquery.com/)
 
+# :Smile: TODO:
